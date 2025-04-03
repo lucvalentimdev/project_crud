@@ -26,7 +26,7 @@ var
 implementation
 
 uses
-   U_FPessoas;
+   U_FPessoaCadastrar;
 
 {$R *.dfm}
 
@@ -37,13 +37,17 @@ end;
 
 procedure TF_Menu.Btn_RelatorioClick(Sender: TObject);
 begin
-   if F_Pessoas = nil then
+   if F_PessoaCadastrar = nil then
    begin
-      F_Pessoas := TF_Pessoas.Create(Self);
-      F_Pessoas.Show;
+      try
+         F_PessoaCadastrar := TF_PessoaCadastrar.Create(Self);
+         F_PessoaCadastrar.Show;
+      finally
+         F_PessoaCadastrar := nil;
+      end;
    end
    else
-      F_Pessoas.Show;
+      F_PessoaCadastrar.Show;
 
 end;
 

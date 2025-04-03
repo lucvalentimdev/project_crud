@@ -764,12 +764,13 @@ object F_Menu: TF_Menu
       130
       681)
     object Btn_Relatorio: TSpeedButton
-      Left = 4
+      Left = 0
       Top = 16
-      Width = 120
+      Width = 130
       Height = 40
       Cursor = crHandPoint
       Caption = 'Pessoas'
+      Flat = True
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -891,17 +892,18 @@ object F_Menu: TF_Menu
       OnClick = Btn_RelatorioClick
     end
     object Btn_Fechar: TSpeedButton
-      Left = 4
-      Top = 629
-      Width = 100
+      Left = 0
+      Top = 640
+      Width = 130
       Height = 40
       Cursor = crHandPoint
       Anchors = [akLeft, akBottom]
       Caption = 'Sair'
+      Flat = True
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Segoe UI Semibold'
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       Glyph.Data = {
         B60D0000424DB60D000000000000360000002800000030000000180000000100
@@ -1017,7 +1019,6 @@ object F_Menu: TF_Menu
       NumGlyphs = 2
       ParentFont = False
       OnClick = Btn_FecharClick
-      ExplicitTop = 648
     end
   end
 end

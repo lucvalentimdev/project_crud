@@ -1,4 +1,4 @@
-object DataModule1: TDataModule1
+object Data_Module: TData_Module
   OnCreate = DataModuleCreate
   Height = 480
   Width = 640
@@ -8,9 +8,6 @@ object DataModule1: TDataModule1
     Top = 96
   end
   object Con_1: TFDConnection
-    Params.Strings = (
-      'DriverID=SQLite')
-    Connected = True
     LoginPrompt = False
     Left = 32
     Top = 40
@@ -31,7 +28,22 @@ object DataModule1: TDataModule1
   end
   object FQry_TipoPessoa: TFDQuery
     Connection = Con_1
+    SQL.Strings = (
+      'select *'
+      'from'
+      'tipopessoa')
     Left = 448
     Top = 88
+    object FQry_TipoPessoaid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object FQry_TipoPessoatipo_descricao: TWideStringField
+      FieldName = 'tipo_descricao'
+      Origin = 'tipo_descricao'
+      Required = True
+      Size = 100
+    end
   end
 end

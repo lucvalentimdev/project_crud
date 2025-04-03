@@ -1,7 +1,7 @@
 unit U_CadastroController;
 
 interface
-   uses
+{   uses
    U_Pessoa;
 type
   TCadastroController = class
@@ -17,14 +17,14 @@ type
       const Endereco: TEndereco
     );
     procedure ConsultarCEP(const ACep: string; var AEndereco: TEndereco);
-  end;
+  end;    }
 
 implementation
 
 uses
   System.SysUtils;
 
-constructor TCadastroController.Create(APessoa: TPessoa);
+{constructor TCadastroController.Create(APessoa: TPessoa);
 begin
   FPessoa := APessoa;
 end;
@@ -57,6 +57,6 @@ begin
     on E: Exception do
       raise Exception.Create('Erro ao consultar o CEP: ' + E.Message);
   end;
-end;
+end;}
 
 end.

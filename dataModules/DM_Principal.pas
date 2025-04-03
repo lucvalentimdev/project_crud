@@ -7,13 +7,15 @@ uses
   FireDAC.Phys.SQLiteWrapper.Stat, Data.DB, FireDAC.Comp.Client, FireDAC.Comp.UI, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet;
 
 type
-  TDataModule1 = class(TDataModule)
+  TData_Module = class(TDataModule)
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     Con_1: TFDConnection;
     FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
     FQry_Op: TFDQuery;
     FQry_Pessoas: TFDQuery;
     FQry_TipoPessoa: TFDQuery;
+    FQry_TipoPessoaid: TFDAutoIncField;
+    FQry_TipoPessoatipo_descricao: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -22,7 +24,7 @@ type
   end;
 
 var
-  DataModule1: TDataModule1;
+  Data_Module: TData_Module;
 
 implementation
 
@@ -30,7 +32,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TDataModule1.DataModuleCreate(Sender: TObject);    // Aqui incio criando os parametros de conexão //
+procedure TData_Module.DataModuleCreate(Sender: TObject);    // Aqui incio criando os parametros de conexão //
 begin
    try
       Con_1.Params.Clear;
