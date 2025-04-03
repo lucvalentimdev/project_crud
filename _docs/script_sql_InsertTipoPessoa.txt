@@ -1,0 +1,5 @@
+INSERT INTO TipoPessoa (tipo_descricao) VALUES
+('Cliente'),
+('Fornecedor'),
+('Transportador'),
+('Colaborador');

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2025/04/02 19:26:11.060,=C:\Users\lucas\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 19:38:57.838,C:\project_crud\views\U_Menu.pas=C:\Users\lucas\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 19:38:57.838,C:\project_crud\views\U_Menu.dfm=C:\Users\lucas\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2025/04/02 19:39:07.677,C:\project_crud\ProjectCrud.dproj=C:\Users\lucas\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2025/04/02 19:42:57.933,=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 19:43:17.786,C:\project_crud\dataModules\DM_Principal.dfm=C:\project_crud\Unit1.dfm</Transaction>
+    <Transaction>2025/04/02 19:43:17.786,C:\project_crud\dataModules\DM_Principal.pas=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 20:17:22.621,=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 20:17:41.245,C:\project_crud\views\U_Pessoas.dfm=C:\project_crud\Unit1.dfm</Transaction>
+    <Transaction>2025/04/02 20:17:41.245,C:\project_crud\views\U_Pessoas.pas=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 21:19:03.957,=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 21:19:53.277,C:\project_crud\models\U_Pessoa.pas=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 21:27:02.395,=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 21:27:25.927,C:\project_crud\models\U_FPessoa.pas=C:\project_crud\models\U_Pessoa.pas</Transaction>
+    <Transaction>2025/04/02 21:27:47.810,C:\project_crud\models\U_Pessoa.pas=C:\project_crud\models\U_FPessoa.pas</Transaction>
+    <Transaction>2025/04/02 21:28:03.335,C:\project_crud\views\U_FPessoas.dfm=C:\project_crud\views\U_Pessoas.dfm</Transaction>
+    <Transaction>2025/04/02 21:28:03.335,C:\project_crud\views\U_FPessoas.pas=C:\project_crud\views\U_Pessoas.pas</Transaction>
+    <Transaction>2025/04/02 21:28:10.564,C:\project_crud\views\U_FMenu.pas=C:\project_crud\views\U_Menu.pas</Transaction>
+    <Transaction>2025/04/02 21:28:10.564,C:\project_crud\views\U_FMenu.dfm=C:\project_crud\views\U_Menu.dfm</Transaction>
+    <Transaction>2025/04/02 21:28:47.270,C:\project_crud\U_Endereco.pas=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 21:28:55.629,C:\project_crud\U_Endereco.pas=</Transaction>
+    <Transaction>2025/04/02 21:29:01.204,=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 21:29:15.145,C:\project_crud\models\U_Endereco.pas=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 21:42:17.478,=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 21:42:33.406,C:\project_crud\controllers\U_CadastroController.pas=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 21:44:58.146,=C:\project_crud\Unit1.pas</Transaction>
+    <Transaction>2025/04/02 21:45:23.290,C:\project_crud\views\U_FPessoaBuscar.dfm=C:\project_crud\Unit1.dfm</Transaction>
+    <Transaction>2025/04/02 21:45:23.290,C:\project_crud\views\U_FPessoaBuscar.pas=C:\project_crud\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,66 @@
+unit U_Pessoas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXCalendars, Vcl.StdCtrls, Vcl.Buttons, Vcl.Imaging.pngimage;
+
+type
+  TF_Pessoas = class(TForm)
+    grp_Profile: TGroupBox;
+    Label7: TLabel;
+    img_Perfil: TImage;
+    Label10: TLabel;
+    Lb_DataCadastro: TLabel;
+    Lb_2: TLabel;
+    Label14: TLabel;
+    Bbtn_UpImgPerfil: TBitBtn;
+    grp_Dados: TGroupBox;
+    Label24: TLabel;
+    Label2: TLabel;
+    Label5: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label22: TLabel;
+    Label26: TLabel;
+    Label37: TLabel;
+    Ed_NomeAluno: TEdit;
+    Cbo_TipoPessoa: TComboBox;
+    Ed_CPFAluno: TEdit;
+    Ed_NaturalidadeAluno: TEdit;
+    Calendar_DataNascAluno: TCalendarPicker;
+    Cbo_UF: TComboBox;
+    Ed_EnderecoAluno: TEdit;
+    Ed_CEPAluno: TEdit;
+    Pn_rodape: TPanel;
+    Bbtn_Limpar: TBitBtn;
+    Bbtn_Fechar1: TBitBtn;
+    Bbtn_Concluir: TBitBtn;
+    OpenDialog1: TOpenDialog;
+    procedure Bbtn_UpImgPerfilClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  F_Pessoas: TF_Pessoas;
+
+implementation
+
+{$R *.dfm}
+
+procedure TF_Pessoas.Bbtn_UpImgPerfilClick(Sender: TObject);
+ var
+  EnderecoImg : string;
+begin
+   if OpenDialog1.Execute then
+      EnderecoImg  := OpenDialog1.FileName;
+
+   Img_Perfil.Picture.LoadFromFile(EnderecoImg);   // Carrega temporariamente a imagem no TImagem //
+
+end;
+
+end.

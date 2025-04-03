@@ -1,0 +1,4 @@
+CREATE TABLE TipoPessoa (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    tipo_descricao TEXT(100) NOT NULL
+);

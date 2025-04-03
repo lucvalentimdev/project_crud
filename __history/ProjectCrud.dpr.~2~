@@ -1,0 +1,16 @@
+program ProjectCrud;
+
+uses
+  Vcl.Forms,
+  U_Menu in 'views\U_Menu.pas' {F_Menu},
+  DM_Principal in 'dataModules\DM_Principal.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TF_Menu, F_Menu);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.
