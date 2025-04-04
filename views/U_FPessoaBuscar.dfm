@@ -11,6 +11,7 @@ object F_PessoaBuscar: TF_PessoaBuscar
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poMainFormCenter
+  OnClose = FormClose
   TextHeight = 15
   object Pn_Top: TPanel
     Left = 0
@@ -316,6 +317,7 @@ object F_PessoaBuscar: TF_PessoaBuscar
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 0
+      OnClick = Bbtn_LimparClick
     end
     object Bbtn_Fechar1: TBitBtn
       Left = 506
@@ -382,6 +384,7 @@ object F_PessoaBuscar: TF_PessoaBuscar
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 1
+      OnClick = Bbtn_Fechar1Click
     end
     object Bbtn_Editar: TBitBtn
       Left = 254
@@ -722,19 +725,10 @@ object F_PessoaBuscar: TF_PessoaBuscar
       Origin = 'data_nascimento'
       BlobType = ftWideMemo
     end
-    object CDS_Pessoastipo_cliente: TIntegerField
-      FieldName = 'tipo_cliente'
-      Origin = 'tipo_cliente'
-    end
     object CDS_Pessoascpf: TWideStringField
       FieldName = 'cpf'
       Origin = 'cpf'
       Size = 11
-    end
-    object CDS_Pessoascnpj: TWideStringField
-      FieldName = 'cnpj'
-      Origin = 'cnpj'
-      Size = 14
     end
     object CDS_Pessoasrg: TWideStringField
       FieldName = 'rg'
@@ -770,6 +764,13 @@ object F_PessoaBuscar: TF_PessoaBuscar
       FieldName = 'end_numero'
       Origin = 'end_numero'
       BlobType = ftWideMemo
+    end
+    object CDS_Pessoastipo_pessoa: TStringField
+      FieldName = 'tipo_pessoa'
+    end
+    object CDS_Pessoascnpj: TStringField
+      FieldName = 'cnpj'
+      Size = 16
     end
   end
 end

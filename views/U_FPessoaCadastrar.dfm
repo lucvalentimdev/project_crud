@@ -485,32 +485,6 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       Proportional = True
       ShowHint = False
     end
-    object Label10: TLabel
-      Left = 3
-      Top = 242
-      Width = 89
-      Height = 17
-      Caption = 'Data Cadastro:'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clBlue
-      Font.Height = -13
-      Font.Name = 'Segoe UI Semibold'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Lb_DataCadastro: TLabel
-      Left = 98
-      Top = 242
-      Width = 4
-      Height = 17
-      Caption = '.'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clGray
-      Font.Height = -13
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
     object Lb_2: TLabel
       AlignWithMargins = True
       Left = 0
@@ -1122,7 +1096,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       Font.Height = -13
       Font.Name = 'Segoe UI'
       Font.Style = []
-      MaxLength = 11
+      MaxLength = 14
       NumbersOnly = True
       ParentCtl3D = False
       ParentFont = False

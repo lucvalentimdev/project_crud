@@ -5,15 +5,13 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXCalendars, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Imaging.pngimage, Vcl.Mask, U_Endereco, U_Pessoa, U_GeralController;
+  Vcl.Imaging.pngimage, Vcl.Mask, U_Endereco, U_Pessoa, U_GeralController, JPEG;
 
 type
   TF_PessoaCadastrar = class(TForm)
     grp_Profile: TGroupBox;
     Label7: TLabel;
     img_Perfil: TImage;
-    Label10: TLabel;
-    Lb_DataCadastro: TLabel;
     Lb_2: TLabel;
     Label14: TLabel;
     Bbtn_UpImgPerfil: TBitBtn;
@@ -148,18 +146,20 @@ begin
     // Chamada do Controller para salvar a pessoa //
 
       Controller.SalvarPessoa(
-         Cbo_TipoPessoa.ItemIndex,             // Tipo de Pessoa
-         Trim(Ed_Nome.Text),                   // Nome
-         Calendar_DataNasc.Date,               // Data de Nascimento
-         Trim(Ed_CPF.Text),                    // CPF
-         Trim(Ed_RG.Text),                     // RG
-         Trim(Ed_Email.Text),                  // E-mail
-         Trim(Ed_Telefone.Text),               // Telefone
-         Endereco                              // Objeto Endereço
-       );
+         Cbo_TipoPessoa.ItemIndex,             // Tipo de Pessoa     //
+         Trim(Ed_Nome.Text),                   // Nome               //
+         Calendar_DataNasc.Date,               // Data de Nascimento //
+         Trim(Ed_CPF.Text),                    // CPF                //
+         Trim(Ed_CNPJ.Text),
+         Trim(Ed_RG.Text),                     // RG                 //
+         Trim(Ed_Email.Text),                  // E-mail             //
+         Trim(Ed_Telefone.Text),               // Telefone           //
+         Endereco                              // Objeto Endereço    //
+                                 );
 
       MessageDlg('Pessoa cadastrada com sucesso!', mtInformation, [mbOK], 0);
-      Bbtn_Limpar.Click;
+      Bbtn_Cancelar.Click;
+
    except on E: Exception do
       MessageDlg('Erro ao salvar a pessoa: ' + E.Message, mtError, [mbOK], 0);
    end;
@@ -194,9 +194,16 @@ procedure TF_PessoaCadastrar.Bbtn_UpImgPerfilClick(Sender: TObject);
   EnderecoImg : string;
 begin
    if OpenDialog1.Execute then
-      EnderecoImg  := OpenDialog1.FileName;
-
-   Img_Perfil.Picture.LoadFromFile(EnderecoImg);   // Carrega temporariamente a imagem no TImagem //
+   begin
+      EnderecoImg := OpenDialog1.FileName;
+      try
+        Img_Perfil.Picture.LoadFromFile(EnderecoImg);
+      except on E: Exception do
+          ShowMessage('Erro ao carregar a imagem: ' + E.Message);
+      end;
+   end
+   else
+     ShowMessage('Nenhuma imagem foi selecionada.');  // Carrega temporariamente a imagem no TImagem //
 end;
 
 procedure TF_PessoaCadastrar.Cbo_TipoPessoaSelect(Sender: TObject);
@@ -272,6 +279,7 @@ begin
       Cbo_TipoPessoa.Items.Add(Data_Module.FQry_TipoPessoa.FieldByName('tipo_descricao').AsString);
       Data_Module.FQry_TipoPessoa.Next;
    end;
+   Cbo_TipoPessoa.ItemIndex := 1;
 
    Bbtn_Concluir.Top       := 23;
    Bbtn_Concluir.Visible   := False;
@@ -299,74 +307,100 @@ end;
 
 function TF_PessoaCadastrar.PreenchimentoCampos: Boolean;
 begin
-  // Valida o campo Logradouro //
-  if Trim(Ed_Logradouro.Text) = '' then
-  begin
-    MessageDlg('O campo Logradouro é obrigatório!', mtWarning, [mbOK], 0);
-    Ed_Logradouro.SetFocus;
-    Result := False;
-    Exit;
-  end;
-
-  if Trim(Cbo_TipoPessoa.Text) = 'CLIENTE' then   //<-- Verifica o tipo de pessoa selecionado //
-  begin
-    if Trim(Ed_CPF.Text) = '' then      // CPF é obrigatório para CLIENTE //
-    begin
-      MessageDlg('O campo CPF é obrigatório para Cliente!', mtWarning, [mbOK], 0);
-      Ed_CPF.SetFocus;
+   // Valida o campo Nome //
+   if Trim(Ed_Nome.Text) = '' then
+   begin
+      MessageDlg('O campo Nome é obrigatório!', mtWarning, [mbOK], 0);
+      Ed_Nome.SetFocus;
       Result := False;
       Exit;
-    end;
-  end
-  else
-  begin
-    // CNPJ é obrigatório para outros tipos de pessoa //
-    if Trim(Ed_CNPJ.Text) = '' then
-    begin
-      MessageDlg('O campo CNPJ é obrigatório para este tipo de pessoa!', mtWarning, [mbOK], 0);
-      Ed_CNPJ.SetFocus;
+   end;
+
+   // Valida o campo Logradouro //
+   if Trim(Ed_Logradouro.Text) = '' then
+   begin
+      MessageDlg('O campo Logradouro é obrigatório!', mtWarning, [mbOK], 0);
+      Ed_Logradouro.SetFocus;
       Result := False;
       Exit;
-    end;
-  end;
+   end;
 
-  // Valida o campo Telefone//
-  if Trim(Ed_Telefone.Text) = '' then
-  begin
-    MessageDlg('O campo Telefone é obrigatório!', mtWarning, [mbOK], 0);
-    Ed_Telefone.SetFocus;
-    Result := False;
-    Exit;
-  end;
+   if Trim(Cbo_TipoPessoa.Text) = 'CLIENTE' then   //<-- Verifica o tipo de pessoa selecionado //
+   begin
+      if Trim(Ed_CPF.Text) = '' then      // CPF é obrigatório para CLIENTE //
+      begin
+        MessageDlg('O campo CPF é obrigatório para Cliente!', mtWarning, [mbOK], 0);
+        Ed_CPF.SetFocus;
+        Result := False;
+        Exit;
+      end;
 
-  // Valida o campo Cidade//
-  if Trim(Ed_Cidade.Text) = '' then
-  begin
-    MessageDlg('O campo Cidade é obrigatório!', mtWarning, [mbOK], 0);
-    Ed_Cidade.SetFocus;
-    Result := False;
-    Exit;
-  end;
+      if Trim(Ed_RG.Text) = '' then        // Campo RG é obrigatório para Cliente //
+      begin
+        MessageDlg('O campo RG é obrigatório!', mtWarning, [mbOK], 0);
+        Ed_RG.SetFocus;
+        Result := False;
+        Exit;
+      end;
+   end
+   else
+   begin
+      // CNPJ é obrigatório para outros tipos de pessoa //
+      if Trim(Ed_CNPJ.Text) = '' then
+      begin
+        MessageDlg('O campo CNPJ é obrigatório para este tipo de pessoa!', mtWarning, [mbOK], 0);
+        Ed_CNPJ.SetFocus;
+        Result := False;
+        Exit;
+      end;
+   end;
 
-  // Valida o campo UF//
-  if Trim(Ed_UF.Text) = '' then
-  begin
-    MessageDlg('O campo UF é obrigatório!', mtWarning, [mbOK], 0);
-    Ed_UF.SetFocus;
-    Result := False;
-    Exit;
-  end;
+   // Valida o campo Telefone//
+   if Trim(Ed_Telefone.Text) = '' then
+   begin
+     MessageDlg('O campo Telefone é obrigatório!', mtWarning, [mbOK], 0);
+     Ed_Telefone.SetFocus;
+     Result := False;
+     Exit;
+   end;
 
-  // Valida o campo CEP//
-  if Trim(Ed_CEP.Text) = '' then
-  begin
-    MessageDlg('O campo CEP é obrigatório!', mtWarning, [mbOK], 0);
-    Ed_CEP.SetFocus;
-    Result := False;
-    Exit;
-  end;
+   // Valida o campo E-mail//
+   if Trim(Ed_Email.Text) = '' then
+   begin
+      MessageDlg('O campo E-mail é obrigatório!', mtWarning, [mbOK], 0);
+      Ed_Email.SetFocus;
+      Result := False;
+      Exit;
+   end;
 
-  Result := True;
+   // Valida o campo Cidade//
+   if Trim(Ed_Cidade.Text) = '' then
+   begin
+      MessageDlg('O campo Cidade é obrigatório!', mtWarning, [mbOK], 0);
+      Ed_Cidade.SetFocus;
+      Result := False;
+      Exit;
+   end;
+
+   // Valida o campo UF//
+   if Trim(Ed_UF.Text) = '' then
+   begin
+      MessageDlg('O campo UF é obrigatório!', mtWarning, [mbOK], 0);
+      Ed_UF.SetFocus;
+      Result := False;
+      Exit;
+   end;
+
+   // Valida o campo CEP//
+   if Trim(Ed_CEP.Text) = '' then
+   begin
+      MessageDlg('O campo CEP é obrigatório!', mtWarning, [mbOK], 0);
+      Ed_CEP.SetFocus;
+      Result := False;
+      Exit;
+   end;
+
+Result := True;
 end;
 
 end.

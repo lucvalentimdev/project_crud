@@ -14,8 +14,8 @@ type
 
 
     procedure SalvarPessoa(const TipoPessoa: Integer; const Nome: string; const DataNascimento: TDate;
-                           const CPF: string; const RG: string; const Email: string; const Telefone: string;
-                           const Endereco: TEndereco);
+                           const CPF: string;  const CNPJ : string; const RG: string; const Email: string;
+                           const Telefone: string; const Endereco: TEndereco);
     procedure ConsultarCEP(const ACep: string; var AEndereco: TEndereco);
     procedure CarregarCDSPessoas(CDS_Pessoas : TClientDataSet);
     function ValidarCEP(const ACep: string): Boolean;
@@ -29,19 +29,27 @@ uses
   System.SysUtils;
 
 procedure TGeralController.SalvarPessoa(const TipoPessoa: Integer; const Nome: string; const DataNascimento: TDate;
-          const CPF: string; const RG: string; const Email: string; const Telefone: string;const Endereco: TEndereco);
+          const CPF: string; const CNPJ : string; const RG: string;  const Email: string; const Telefone: string;
+          const Endereco: TEndereco);
 var
  FPessoa: TPessoa;
 begin
-   if not FPessoa.ValidarEmail(Email) then                  // Validação do e-mail //
-      raise Exception.Create('E-mail inválido!');
-
-   //if FPessoa.CPFouCNPJCadastrado(FPessoa.CPF) then         // Validação de Pessoa já cadastrada (CPF ou CNPJ) //
-   //   raise Exception.Create('CPF já cadastrado!');
 
    try
-      FPessoa := TPessoa.Create(TipoPessoa, Nome, DataNascimento, CPF, RG, Email, Telefone, Endereco);
-      FPessoa.Salvar;                                     // Chamada do metodo salvar no modelo Pessoa //
+      FPessoa := TPessoa.Create(TipoPessoa, Nome, DataNascimento, CPF, CNPJ, RG, Email, Telefone, Endereco);
+
+      if not FPessoa.ValidarEmail(Email) then                  // Validação do e-mail //
+         raise Exception.Create('E-mail inválido!');
+
+      {if FPessoa.CPF = '' then
+      begin
+         if FPessoa.CPFouCNPJCadastrado(FPessoa.CNPJ) then         // Validação de Pessoa já cadastrada (CPF ou CNPJ) //
+            raise Exception.Create('CNPJ já cadastrado!')            ** Erro de memória identificado nesse trecho **
+      end
+      else if FPessoa.CPFouCNPJCadastrado(FPessoa.CPF) then
+         raise Exception.Create('CPF já cadastrado!');       }
+
+      FPessoa.Salvar;                                     //<-- Chamada do metodo salvar no modelo Pessoa //
    finally
       FPessoa.Free;
    end;
@@ -75,14 +83,14 @@ begin
       ListaPessoas := Pessoa.BuscarPessoas;
       CDS_Pessoas.EmptyDataSet;
 
-   // Carrega através da lista de objetos Pessoa para preencher o CDS //
+               // Carrega através da lista de objetos Pessoa para preencher o CDS //
       for Pessoa in ListaPessoas do
       begin
          CDS_Pessoas.Append;
-         CDS_Pessoas.FieldByName('id_pessoa').AsInteger           := 0;
-         CDS_Pessoas.FieldByName('tipo_pessoa').AsInteger         := Pessoa.TipoPessoa;
+         //CDS_Pessoas.FieldByName('id_pessoa').AsInteger           := 0;
+         //CDS_Pessoas.FieldByName('tipo_pessoa').AsInteger         := Pessoa.TipoPessoa;
          CDS_Pessoas.FieldByName('nome').AsString                 := Pessoa.Nome;
-         CDS_Pessoas.FieldByName('data_nascimento').AsDateTime    := Pessoa.DataNascimento;
+         //CDS_Pessoas.FieldByName('data_nascimento').AsDateTime    := Pessoa.DataNascimento;
          CDS_Pessoas.FieldByName('cpf').AsString                  := Pessoa.CPF;
          CDS_Pessoas.FieldByName('rg').AsString                   := Pessoa.RG;
          CDS_Pessoas.FieldByName('email').AsString                := Pessoa.Email;

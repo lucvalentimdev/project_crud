@@ -1,9 +1,9 @@
 CREATE TABLE pessoa (
-    id_pessoa      INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_pessoa       INTEGER PRIMARY KEY AUTOINCREMENT,
     nome           TEXT (100) NOT NULL,
-    telefone       TEXT (30),
+    telefone        TEXT (30),
     data_nascimento TEXT, -- Usar formato YYYY-MM-DD
-    tipo_cliente   INTEGER REFERENCES TipoPessoa(id),
+    id_tipopessoa  INTEGER REFERENCES TipoPessoa(id),
     cpf            TEXT (11),
     cnpj           TEXT (14),
     rg             TEXT (11),
