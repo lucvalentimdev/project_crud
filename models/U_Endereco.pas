@@ -12,7 +12,6 @@ type
     FCidade: string;
     FEstado: string;
     FCEP: string;
-    FComplemento: string;
     FNumero: string;
     FLog : string;
 
@@ -22,7 +21,6 @@ type
     property Cidade: string      read FCidade      write FCidade;
     property Estado: string      read FEstado      write FEstado;
     property CEP: string         read FCEP         write FCEP;
-    property Complemento: string read FComplemento write FComplemento;
     property Numero: string      read FNumero      write FNumero;
     property Log : string        read FLog         write FLog;
 
@@ -56,7 +54,7 @@ begin
          end;
       end
       else
-        FLog := 'Erro ao consultar o CEP: ' + Response.StatusCode.ToString;
+        FLog := Response.StatusCode.ToString;
    finally
       HttpClient.Free;
    end;

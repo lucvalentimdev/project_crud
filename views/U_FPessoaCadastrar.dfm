@@ -614,6 +614,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     Height = 385
     Caption = 'Informa'#231#245'es: '
     DefaultHeaderFont = False
+    Enabled = False
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -643,7 +644,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 439
+      Left = 455
       Top = 42
       Width = 29
       Height = 17
@@ -669,9 +670,9 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       ParentFont = False
     end
     object Label8: TLabel
-      Left = 573
+      Left = 559
       Top = 260
-      Width = 19
+      Width = 22
       Height = 17
       Caption = 'UF:'
       Font.Charset = ANSI_CHARSET
@@ -734,7 +735,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       ParentFont = False
     end
     object Label1: TLabel
-      Left = 182
+      Left = 436
       Top = 73
       Width = 33
       Height = 17
@@ -797,6 +798,214 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Lb_1: TLabel
+      Left = 436
+      Top = 39
+      Width = 17
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label12: TLabel
+      Left = 660
+      Top = 39
+      Width = 12
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label15: TLabel
+      Left = 398
+      Top = 70
+      Width = 6
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label16: TLabel
+      Left = 398
+      Top = 132
+      Width = 6
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label17: TLabel
+      Left = 246
+      Top = 163
+      Width = 17
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label18: TLabel
+      Left = 641
+      Top = 257
+      Width = 14
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label19: TLabel
+      Left = 641
+      Top = 288
+      Width = 14
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label20: TLabel
+      Left = 529
+      Top = 361
+      Width = 128
+      Height = 17
+      Alignment = taCenter
+      Caption = 'Campos * Obrigat'#243'rios'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsItalic]
+      ParentFont = False
+    end
+    object Label13: TLabel
+      Left = 559
+      Top = 288
+      Width = 19
+      Height = 17
+      Caption = 'N'#186':'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlue
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label21: TLabel
+      Left = 208
+      Top = 73
+      Width = 20
+      Height = 17
+      Caption = 'RG:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlue
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label22: TLabel
+      Left = 194
+      Top = 70
+      Width = 12
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label23: TLabel
+      Left = 660
+      Top = 70
+      Width = 11
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label25: TLabel
+      Left = 546
+      Top = 257
+      Width = 16
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label27: TLabel
+      Left = 546
+      Top = 288
+      Width = 15
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label28: TLabel
+      Left = 120
+      Top = 257
+      Width = 15
+      Height = 17
+      Alignment = taCenter
+      Caption = '*'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object Ed_Nome: TEdit
       Left = 57
       Top = 39
@@ -814,9 +1023,9 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       TabOrder = 0
     end
     object Cbo_TipoPessoa: TComboBox
-      Left = 474
+      Left = 490
       Top = 39
-      Width = 175
+      Width = 167
       Height = 25
       Color = clInfoBk
       TabOrder = 1
@@ -827,7 +1036,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Ed_CPF: TEdit
       Left = 55
       Top = 70
-      Width = 121
+      Width = 138
       Height = 25
       Color = clInfoBk
       Ctl3D = True
@@ -856,7 +1065,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       Font.Style = []
       ParentCtl3D = False
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 6
     end
     object Calendar_DataNasc: TCalendarPicker
       Left = 143
@@ -881,13 +1090,13 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       Font.Style = []
       MinYear = 1900
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 5
       TextHint = 'Clique para selecionar'
     end
     object Ed_Logradouro: TEdit
       Left = 95
       Top = 288
-      Width = 554
+      Width = 450
       Height = 25
       Color = clInfoBk
       Ctl3D = True
@@ -898,12 +1107,12 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       Font.Style = []
       ParentCtl3D = False
       ParentFont = False
-      TabOrder = 10
+      TabOrder = 11
     end
     object Ed_CNPJ: TEdit
-      Left = 221
+      Left = 475
       Top = 70
-      Width = 173
+      Width = 182
       Height = 25
       Color = clBtnFace
       Ctl3D = True
@@ -917,7 +1126,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       NumbersOnly = True
       ParentCtl3D = False
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 4
     end
     object Ed_Telefone: TEdit
       Left = 70
@@ -931,31 +1140,16 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       Font.Height = -13
       Font.Name = 'Segoe UI'
       Font.Style = []
+      MaxLength = 11
+      NumbersOnly = True
       ParentCtl3D = False
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 7
     end
     object Ed_Cidade: TEdit
       Left = 193
       Top = 257
-      Width = 374
-      Height = 25
-      Color = clInfoBk
-      Ctl3D = True
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      MaxLength = 9
-      ParentCtl3D = False
-      ParentFont = False
-      TabOrder = 8
-    end
-    object Ed_UF: TEdit
-      Left = 598
-      Top = 257
-      Width = 51
+      Width = 354
       Height = 25
       Color = clInfoBk
       Ctl3D = True
@@ -969,18 +1163,71 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       ParentFont = False
       TabOrder = 9
     end
+    object Ed_UF: TEdit
+      Left = 587
+      Top = 257
+      Width = 51
+      Height = 25
+      Color = clInfoBk
+      Ctl3D = True
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      MaxLength = 2
+      ParentCtl3D = False
+      ParentFont = False
+      TabOrder = 10
+    end
     object Ed_CEP: TMaskEdit
       Left = 43
       Top = 257
-      Width = 94
+      Width = 78
       Height = 25
       Alignment = taCenter
       Color = clInfoBk
       EditMask = '#####-###'
       MaxLength = 9
-      TabOrder = 7
+      TabOrder = 8
       Text = '     -   '
       OnExit = Ed_CEPExit
+    end
+    object Ed_Numero: TEdit
+      Left = 587
+      Top = 288
+      Width = 51
+      Height = 25
+      Color = clInfoBk
+      Ctl3D = True
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      MaxLength = 9
+      NumbersOnly = True
+      ParentCtl3D = False
+      ParentFont = False
+      TabOrder = 12
+    end
+    object Ed_RG: TEdit
+      Left = 240
+      Top = 70
+      Width = 154
+      Height = 25
+      Color = clInfoBk
+      Ctl3D = True
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      MaxLength = 11
+      NumbersOnly = True
+      ParentCtl3D = False
+      ParentFont = False
+      TabOrder = 3
     end
   end
   object Pn_rodape: TPanel
@@ -1189,6 +1436,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 5
+      OnClick = Bbtn_ConcluirClick
     end
     object Bbtn_Novo: TBitBtn
       Left = 130
@@ -1570,6 +1818,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 2
+      OnClick = Bbtn_CancelarClick
     end
   end
   object OpenDialog1: TOpenDialog

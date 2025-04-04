@@ -7,7 +7,7 @@ uses
   U_FPessoaCadastrar in 'views\U_FPessoaCadastrar.pas' {F_PessoaCadastrar},
   U_Pessoa in 'models\U_Pessoa.pas',
   U_Endereco in 'models\U_Endereco.pas',
-  U_CadastroController in 'controllers\U_CadastroController.pas',
+  U_GeralController in 'controllers\U_GeralController.pas',
   U_FPessoaBuscar in 'views\U_FPessoaBuscar.pas' {F_PessoaBuscar};
 
 {$R *.res}

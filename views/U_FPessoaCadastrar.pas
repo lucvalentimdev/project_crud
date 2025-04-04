@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXCalendars, Vcl.StdCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, Vcl.Mask;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXCalendars, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Imaging.pngimage, Vcl.Mask, U_Endereco, U_Pessoa, U_GeralController;
 
 type
   TF_PessoaCadastrar = class(TForm)
@@ -49,6 +50,23 @@ type
     Ed_UF: TEdit;
     Ed_CEP: TMaskEdit;
     Label11: TLabel;
+    Lb_1: TLabel;
+    Label12: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label13: TLabel;
+    Ed_Numero: TEdit;
+    Ed_RG: TEdit;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label25: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
     procedure Bbtn_UpImgPerfilClick(Sender: TObject);
     procedure Cbo_TipoPessoaSelect(Sender: TObject);
     procedure Bbtn_Fechar1Click(Sender: TObject);
@@ -58,8 +76,15 @@ type
     procedure LimparCampos();
     procedure Bbtn_LimparClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    function PreenchimentoCampos : Boolean;
+    procedure Bbtn_ConcluirClick(Sender: TObject);
+    procedure ControlarCorDosCampos(CorFundo: TColor);
+    procedure Bbtn_CancelarClick(Sender: TObject);
+
   private
     { Private declarations }
+    var
+    Controller: TGeralController;
   public
     { Public declarations }
   end;
@@ -70,7 +95,7 @@ var
 implementation
 
 uses
-   U_Endereco, U_Pessoa, U_FPessoaBuscar, DM_Principal;
+    U_FPessoaBuscar, DM_Principal;
 
 {$R *.dfm}
 
@@ -90,6 +115,57 @@ begin
 
 end;
 
+procedure TF_PessoaCadastrar.Bbtn_CancelarClick(Sender: TObject);
+begin
+   Bbtn_Novo.Enabled       := True;
+   Bbtn_Cancelar.Enabled   := False;
+   Bbtn_Concluir.Visible   := False;
+   Bbtn_Buscar.Visible     := True;
+   grp_Dados.Enabled       := False;
+
+   LimparCampos;
+   ControlarCorDosCampos(clBtnFace);
+end;
+
+procedure TF_PessoaCadastrar.Bbtn_ConcluirClick(Sender: TObject);
+var
+ NovaPessoa : TPessoa;
+ Endereco   : TEndereco;
+begin
+   if not PreenchimentoCampos  then
+      Exit;
+
+   Endereco := TEndereco.Create;
+
+   try
+    // Alimenta os dados do endereço//
+      Endereco.Logradouro  := Trim(Ed_Logradouro.Text);
+      Endereco.CEP         := Trim(Ed_CEP.Text);
+      Endereco.Cidade      := Trim(Ed_Cidade.Text);
+      Endereco.Estado      := Trim(Ed_UF.Text);
+      Endereco.Numero      := Trim(Ed_Numero.Text);
+
+    // Chamada do Controller para salvar a pessoa //
+
+      Controller.SalvarPessoa(
+         Cbo_TipoPessoa.ItemIndex,             // Tipo de Pessoa
+         Trim(Ed_Nome.Text),                   // Nome
+         Calendar_DataNasc.Date,               // Data de Nascimento
+         Trim(Ed_CPF.Text),                    // CPF
+         Trim(Ed_RG.Text),                     // RG
+         Trim(Ed_Email.Text),                  // E-mail
+         Trim(Ed_Telefone.Text),               // Telefone
+         Endereco                              // Objeto Endereço
+       );
+
+      MessageDlg('Pessoa cadastrada com sucesso!', mtInformation, [mbOK], 0);
+      Bbtn_Limpar.Click;
+   except on E: Exception do
+      MessageDlg('Erro ao salvar a pessoa: ' + E.Message, mtError, [mbOK], 0);
+   end;
+end;
+
+
 procedure TF_PessoaCadastrar.Bbtn_Fechar1Click(Sender: TObject);
 begin
    Close;
@@ -105,7 +181,12 @@ begin
    Bbtn_Concluir.Visible   := True;
    Bbtn_Buscar.Visible     := False;
    Bbtn_Novo.Enabled       := False;
-   Bbtn_Cancelar.Enabled   := False;
+   Bbtn_Cancelar.Enabled   := True;
+   grp_Dados.Enabled       := True;
+   Ed_Nome.SetFocus;
+
+   ControlarCorDosCampos(clInfoBk);
+
 end;
 
 procedure TF_PessoaCadastrar.Bbtn_UpImgPerfilClick(Sender: TObject);
@@ -134,33 +215,54 @@ begin
    end;
 end;
 
+procedure TF_PessoaCadastrar.ControlarCorDosCampos(CorFundo: TColor);
+begin
+   Ed_Nome.Color           := CorFundo;
+   Ed_CPF.Color            := CorFundo;
+   Ed_RG.Color             := CorFundo;
+   Cbo_TipoPessoa.Color    := CorFundo;
+   Ed_Logradouro.Color     := CorFundo;
+   Ed_CNPJ.Color           := CorFundo;
+   Ed_Telefone.Color       := CorFundo;
+   Ed_Cidade.Color         := CorFundo;
+   Ed_UF.Color             := CorFundo;
+   Ed_CEP.Color            := CorFundo;
+   Ed_Numero.Color         := CorFundo;
+   Ed_Email.Color          := CorFundo;
+   Calendar_DataNasc.Color := CorFundo;
+end;
+
 procedure TF_PessoaCadastrar.Ed_CEPExit(Sender: TObject);
 var
-   CEP : TEndereco;
+  Endereco: TEndereco;
 begin
+   Endereco    := TEndereco.Create;
+   Controller  := TGeralController.Create();
+
    try
       try
-         CEP := TEndereco.Create;
-
-         if not CEP.ValidarCEP(Trim(Ed_CEP.Text)) then       // Valida se o CEP esta dento do padrão //
+         if not Controller.ValidarCEP(Trim(Ed_CEP.Text)) then      // Validando CEP //
          begin
             MessageDlg('CEP inválido, favor verificar!', mtInformation, [mbOk, mbCancel], 0);
             Exit;
          end;
 
-         CEP.ConsultarViaCEP(Trim(Ed_CEP.Text));
-      except
-         raise Exception.Create(CEP.Log);
+         Controller.ConsultarCEP(Trim(Ed_CEP.Text), Endereco);    // Consultando CEP //
+      except on E: Exception do
+         begin
+            MessageDlg('Erro ao consultar o CEP: ' + E.Message, mtError, [mbOk], 0);
+            Exit;
+         end;
       end;
 
-      Ed_Logradouro.Text   := CEP.Logradouro;
-      Ed_Cidade.Text       := CEP.Cidade;
-      Ed_UF.Text           := CEP.Estado;
-
+      // Atualiza os campos //
+      Ed_Logradouro.Text   := Endereco.Logradouro;
+      Ed_Cidade.Text       := Endereco.Cidade;
+      Ed_UF.Text           := Endereco.Estado;
    finally
-      CEP.Free;
+     Endereco.Free;      // Libera da memoria //
+     Controller.Free;
    end;
-
 end;
 
 procedure TF_PessoaCadastrar.FormShow(Sender: TObject);
@@ -176,17 +278,98 @@ begin
 
    Bbtn_Concluir.Top       := 23;
    Bbtn_Concluir.Visible   := False;
+   ControlarCorDosCampos(clBtnFace);
 
 end;
 
 procedure TF_PessoaCadastrar.LimparCampos;
 begin
+    Ed_Nome.Clear;
+    Ed_CPF.Clear;
+    Ed_RG.Clear;
+    Cbo_TipoPessoa.ItemIndex := 0;
     Ed_Logradouro.Clear;
     Ed_CNPJ.Clear;
     Ed_Telefone.Clear;
     Ed_Cidade.Clear;
     Ed_UF.Clear;
     Ed_CEP.Clear;
+    Ed_Email.Clear;
+    Ed_Nome.Clear;
+    Ed_Numero.Clear;
+    Calendar_DataNasc.Date := Date;
+end;
+
+function TF_PessoaCadastrar.PreenchimentoCampos: Boolean;
+begin
+  // Valida o campo Logradouro //
+  if Trim(Ed_Logradouro.Text) = '' then
+  begin
+    MessageDlg('O campo Logradouro é obrigatório!', mtWarning, [mbOK], 0);
+    Ed_Logradouro.SetFocus;
+    Result := False;
+    Exit;
+  end;
+
+  if Trim(Cbo_TipoPessoa.Text) = 'CLIENTE' then   //<-- Verifica o tipo de pessoa selecionado //
+  begin
+    if Trim(Ed_CPF.Text) = '' then      // CPF é obrigatório para CLIENTE //
+    begin
+      MessageDlg('O campo CPF é obrigatório para Cliente!', mtWarning, [mbOK], 0);
+      Ed_CPF.SetFocus;
+      Result := False;
+      Exit;
+    end;
+  end
+  else
+  begin
+    // CNPJ é obrigatório para outros tipos de pessoa //
+    if Trim(Ed_CNPJ.Text) = '' then
+    begin
+      MessageDlg('O campo CNPJ é obrigatório para este tipo de pessoa!', mtWarning, [mbOK], 0);
+      Ed_CNPJ.SetFocus;
+      Result := False;
+      Exit;
+    end;
+  end;
+
+  // Valida o campo Telefone//
+  if Trim(Ed_Telefone.Text) = '' then
+  begin
+    MessageDlg('O campo Telefone é obrigatório!', mtWarning, [mbOK], 0);
+    Ed_Telefone.SetFocus;
+    Result := False;
+    Exit;
+  end;
+
+  // Valida o campo Cidade//
+  if Trim(Ed_Cidade.Text) = '' then
+  begin
+    MessageDlg('O campo Cidade é obrigatório!', mtWarning, [mbOK], 0);
+    Ed_Cidade.SetFocus;
+    Result := False;
+    Exit;
+  end;
+
+  // Valida o campo UF//
+  if Trim(Ed_UF.Text) = '' then
+  begin
+    MessageDlg('O campo UF é obrigatório!', mtWarning, [mbOK], 0);
+    Ed_UF.SetFocus;
+    Result := False;
+    Exit;
+  end;
+
+  // Valida o campo CEP//
+  if Trim(Ed_CEP.Text) = '' then
+  begin
+    MessageDlg('O campo CEP é obrigatório!', mtWarning, [mbOK], 0);
+    Ed_CEP.SetFocus;
+    Result := False;
+    Exit;
+  end;
+
+  Result := True;
 end;
 
 end.
