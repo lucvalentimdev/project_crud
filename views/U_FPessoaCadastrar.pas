@@ -238,7 +238,6 @@ var
 begin
    Endereco    := TEndereco.Create;
    Controller  := TGeralController.Create();
-
    try
       try
          if not Controller.ValidarCEP(Trim(Ed_CEP.Text)) then      // Validando CEP //
@@ -246,7 +245,6 @@ begin
             MessageDlg('CEP inválido, favor verificar!', mtInformation, [mbOk, mbCancel], 0);
             Exit;
          end;
-
          Controller.ConsultarCEP(Trim(Ed_CEP.Text), Endereco);    // Consultando CEP //
       except on E: Exception do
          begin
@@ -254,7 +252,6 @@ begin
             Exit;
          end;
       end;
-
       // Atualiza os campos //
       Ed_Logradouro.Text   := Endereco.Logradouro;
       Ed_Cidade.Text       := Endereco.Cidade;

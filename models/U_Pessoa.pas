@@ -16,7 +16,7 @@ type
     FRG: string;
     FEmail: string;
     FTelefone: string;
-    FEndereco: TEndereco;
+    FEndereco: TEndereco;        // Objeto do tipo TEndereco //
 
   public
 
@@ -28,19 +28,69 @@ type
     property RG: string             read FRG             write FRG;
     property Email: string          read FEmail          write FEmail;
     property Telefone: string       read FTelefone       write FTelefone;
-    property Endereco: TEndereco    read FEndereco       write FEndereco;
+    property Endereco: TEndereco    read FEndereco       write FEndereco;    // Objeto do tipo TEndereco //
 
+    constructor Create() overload;
     constructor Create(ATipoPessoa: Integer; ANome: string; ADataNascimento: TDate; ACPF: string; ARG: string;
     AEmail: string ; ATelefone: string; AEndereco: TEndereco); overload;
 
     procedure Salvar;
     function ValidarEmail(const Email: string): Boolean;
     function CPFouCNPJCadastrado(const Documento: string): Boolean;
+    function BuscarPessoas : TArray<TPessoa>;
 
 end;
 
 
 implementation
+
+function TPessoa.BuscarPessoas: TArray<TPessoa>;
+var
+  Pessoa: TPessoa;
+  Endereco : TEndereco;
+  ListaPessoas: TArray<TPessoa>;
+begin
+   try
+      try
+         Data_Module.FQry_Pessoas.SQL.Text := 'SELECT nome, data_nascimento, cpf, rg, email, telefone, cep, endereco,'+
+         ' cidade, estado, end_numero FROM Pessoa';
+         Data_Module.FQry_Pessoas.Open;
+
+         ListaPessoas := TArray<TPessoa>.Create(nil);
+         SetLength(ListaPessoas, Data_Module.FQry_Pessoas.RecordCount);
+
+         while not Data_Module.FQry_Pessoas.Eof do
+         begin
+           Pessoa := TPessoa.Create;
+                     //Pessoa.IdPessoa            := Data_Module.FQry_Pessoas.FieldByName('id_pessoa').AsInteger;
+                     Pessoa.TipoPessoa          := Data_Module.FQry_Pessoas.FieldByName('tipo_pessoa').AsInteger;
+                     Pessoa.Nome                := Data_Module.FQry_Pessoas.FieldByName('nome').AsString;
+                     Pessoa.DataNascimento      := Data_Module.FQry_Pessoas.FieldByName('data_nascimento').AsDateTime;
+                     Pessoa.CPF                 := Data_Module.FQry_Pessoas.FieldByName('cpf').AsString;
+                     Pessoa.RG                  := Data_Module.FQry_Pessoas.FieldByName('rg').AsString;
+                     Pessoa.Email               := Data_Module.FQry_Pessoas.FieldByName('email').AsString;
+                     Pessoa.Telefone            := Data_Module.FQry_Pessoas.FieldByName('telefone').AsString;
+
+                     Pessoa.Endereco := TEndereco.Create;
+                     Pessoa.Endereco.Cep        := Data_Module.FQry_Pessoas.FieldByName('cep').AsString;
+                     Pessoa.Endereco.Logradouro := Data_Module.FQry_Pessoas.FieldByName('endereco').AsString;
+                     Pessoa.Endereco.Cidade     := Data_Module.FQry_Pessoas.FieldByName('cidade').AsString;
+                     Pessoa.Endereco.Estado     := Data_Module.FQry_Pessoas.FieldByName('estado').AsString;
+                     Pessoa.Endereco.Numero     := Data_Module.FQry_Pessoas.FieldByName('end_numero').Value;
+
+            ListaPessoas[Data_Module.FQry_Pessoas.RecNo -1] := Pessoa;
+            Data_Module.FQry_Pessoas.Next;
+         end;
+      finally
+        Data_Module.FQry_Pessoas.Free;
+      end;
+
+   Result := ListaPessoas;
+   finally
+       Pessoa.Free;
+   end;
+end;
+
 
 function TPessoa.CPFouCNPJCadastrado(const Documento: string): Boolean;
 begin
@@ -60,6 +110,11 @@ begin
    except
       raise ;
    end;
+
+end;
+
+constructor TPessoa.Create;
+begin
 
 end;
 
@@ -84,7 +139,6 @@ begin
    try
       try
          Data_Module.FQry_Op.SQL.Text := '';
-
          Data_Module.FQry_Op.SQL.Text                                := Script;
          Data_Module.FQry_Op.ParamByName('nome').AsString            := Self.Nome;
          Data_Module.FQry_Op.ParamByName('data_nascimento').AsDate   := Self.DataNascimento;

@@ -38,6 +38,7 @@ object Data_Module: TData_Module
       FieldName = 'id'
       Origin = 'id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object FQry_TipoPessoatipo_descricao: TWideStringField
       FieldName = 'tipo_descricao'

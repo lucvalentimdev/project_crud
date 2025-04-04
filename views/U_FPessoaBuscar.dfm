@@ -137,6 +137,7 @@ object F_PessoaBuscar: TF_PessoaBuscar
         E8C4C4C4ACACACA6A6A6A6A6A6A9A9A9BBBBBBE1E1E1FFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       NumGlyphs = 2
+      OnClick = Bt_ConsultarClick
     end
     object Label24: TLabel
       Left = 11
@@ -515,14 +516,182 @@ object F_PessoaBuscar: TF_PessoaBuscar
     Width = 884
     Height = 287
     Align = alClient
+    DataSource = DS_1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'id_pessoa'
+        Title.Caption = 'Id.'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 25
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'tipo_cliente'
+        Title.Caption = 'Tipo Cliente'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 83
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nome'
+        Title.Caption = 'Nome'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 363
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'data_nascimento'
+        Title.Caption = 'Nasc/Funda'#231#227'o'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 106
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'telefone'
+        Title.Caption = 'Telefone'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 106
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cpf'
+        Title.Caption = 'CPF'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 117
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cnpj'
+        Title.Caption = 'CNPJ'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 122
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'rg'
+        Title.Caption = 'RG'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'email'
+        Title.Caption = 'E-mail'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 296
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'endereco'
+        Title.Caption = 'Endere'#231'o'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 250
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'end_numero'
+        Title.Caption = 'N'#186
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CEP'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cidade'
+        Title.Caption = 'Cidade'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 249
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'estado'
+        Title.Caption = 'UF'
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Segoe UI Semibold'
+        Title.Font.Style = [fsBold]
+        Width = 50
+        Visible = True
+      end>
   end
   object DS_1: TDataSource
+    DataSet = CDS_Pessoas
     Left = 752
     Top = 16
   end
@@ -531,5 +700,76 @@ object F_PessoaBuscar: TF_PessoaBuscar
     Params = <>
     Left = 808
     Top = 16
+    object CDS_Pessoasid_pessoa: TFDAutoIncField
+      FieldName = 'id_pessoa'
+      Origin = 'id_pessoa'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object CDS_Pessoasnome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Required = True
+      Size = 100
+    end
+    object CDS_Pessoastelefone: TWideStringField
+      FieldName = 'telefone'
+      Origin = 'telefone'
+      Size = 30
+    end
+    object CDS_Pessoasdata_nascimento: TWideMemoField
+      FieldName = 'data_nascimento'
+      Origin = 'data_nascimento'
+      BlobType = ftWideMemo
+    end
+    object CDS_Pessoastipo_cliente: TIntegerField
+      FieldName = 'tipo_cliente'
+      Origin = 'tipo_cliente'
+    end
+    object CDS_Pessoascpf: TWideStringField
+      FieldName = 'cpf'
+      Origin = 'cpf'
+      Size = 11
+    end
+    object CDS_Pessoascnpj: TWideStringField
+      FieldName = 'cnpj'
+      Origin = 'cnpj'
+      Size = 14
+    end
+    object CDS_Pessoasrg: TWideStringField
+      FieldName = 'rg'
+      Origin = 'rg'
+      Size = 11
+    end
+    object CDS_Pessoasemail: TWideStringField
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 100
+    end
+    object CDS_Pessoasendereco: TWideStringField
+      FieldName = 'endereco'
+      Origin = 'endereco'
+      Size = 150
+    end
+    object CDS_Pessoascidade: TWideStringField
+      FieldName = 'cidade'
+      Origin = 'cidade'
+      Size = 100
+    end
+    object CDS_Pessoasestado: TWideStringField
+      FieldName = 'estado'
+      Origin = 'estado'
+      Size = 100
+    end
+    object CDS_PessoasCEP: TWideStringField
+      FieldName = 'CEP'
+      Origin = 'CEP'
+      Size = 9
+    end
+    object CDS_Pessoasend_numero: TWideMemoField
+      FieldName = 'end_numero'
+      Origin = 'end_numero'
+      BlobType = ftWideMemo
+    end
   end
 end

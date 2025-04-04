@@ -1,0 +1,134 @@
+object Data_Module: TData_Module
+  OnCreate = DataModuleCreate
+  Height = 480
+  Width = 640
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 32
+    Top = 96
+  end
+  object Con_1: TFDConnection
+    LoginPrompt = False
+    Left = 32
+    Top = 40
+  end
+  object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
+    Left = 40
+    Top = 168
+  end
+  object FQry_Op: TFDQuery
+    Connection = Con_1
+    Left = 256
+    Top = 88
+  end
+  object FQry_Pessoas: TFDQuery
+    Connection = Con_2
+    SQL.Strings = (
+      'select *'
+      'from pessoa')
+    Left = 352
+    Top = 88
+    object FQry_Pessoasid_pessoa: TFDAutoIncField
+      FieldName = 'id_pessoa'
+      Origin = 'id_pessoa'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object FQry_Pessoasnome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Required = True
+      Size = 100
+    end
+    object FQry_Pessoastelefone: TWideStringField
+      FieldName = 'telefone'
+      Origin = 'telefone'
+      Size = 30
+    end
+    object FQry_Pessoasdata_nascimento: TWideMemoField
+      FieldName = 'data_nascimento'
+      Origin = 'data_nascimento'
+      BlobType = ftWideMemo
+    end
+    object FQry_Pessoastipo_cliente: TIntegerField
+      FieldName = 'tipo_cliente'
+      Origin = 'tipo_cliente'
+    end
+    object FQry_Pessoascpf: TWideStringField
+      FieldName = 'cpf'
+      Origin = 'cpf'
+      Size = 11
+    end
+    object FQry_Pessoascnpj: TWideStringField
+      FieldName = 'cnpj'
+      Origin = 'cnpj'
+      Size = 14
+    end
+    object FQry_Pessoasrg: TWideStringField
+      FieldName = 'rg'
+      Origin = 'rg'
+      Size = 11
+    end
+    object FQry_Pessoasemail: TWideStringField
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 100
+    end
+    object FQry_Pessoasendereco: TWideStringField
+      FieldName = 'endereco'
+      Origin = 'endereco'
+      Size = 150
+    end
+    object FQry_Pessoascidade: TWideStringField
+      FieldName = 'cidade'
+      Origin = 'cidade'
+      Size = 100
+    end
+    object FQry_Pessoasestado: TWideStringField
+      FieldName = 'estado'
+      Origin = 'estado'
+      Size = 100
+    end
+    object FQry_PessoasCEP: TWideStringField
+      FieldName = 'CEP'
+      Origin = 'CEP'
+      Size = 9
+    end
+    object FQry_Pessoasend_numero: TWideMemoField
+      FieldName = 'end_numero'
+      Origin = 'end_numero'
+      BlobType = ftWideMemo
+    end
+  end
+  object FQry_TipoPessoa: TFDQuery
+    Connection = Con_1
+    SQL.Strings = (
+      'select *'
+      'from'
+      'tipopessoa')
+    Left = 448
+    Top = 88
+    object FQry_TipoPessoaid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object FQry_TipoPessoatipo_descricao: TWideStringField
+      FieldName = 'tipo_descricao'
+      Origin = 'tipo_descricao'
+      Required = True
+      Size = 100
+    end
+  end
+  object Con_2: TFDConnection
+    Params.Strings = (
+      'DriverID=SQLite'
+      
+        'Database=C:\Users\lucas\OneDrive\Documentos\_database\db_projCru' +
+        'd')
+    Connected = True
+    LoginPrompt = False
+    Left = 320
+    Top = 200
+  end
+end

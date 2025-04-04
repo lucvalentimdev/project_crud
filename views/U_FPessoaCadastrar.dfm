@@ -672,7 +672,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Label8: TLabel
       Left = 559
       Top = 260
-      Width = 22
+      Width = 19
       Height = 17
       Caption = 'UF:'
       Font.Charset = ANSI_CHARSET
@@ -801,7 +801,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Lb_1: TLabel
       Left = 436
       Top = 39
-      Width = 17
+      Width = 6
       Height = 17
       Alignment = taCenter
       Caption = '*'
@@ -815,7 +815,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Label12: TLabel
       Left = 660
       Top = 39
-      Width = 12
+      Width = 6
       Height = 17
       Alignment = taCenter
       Caption = '*'
@@ -857,7 +857,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Label17: TLabel
       Left = 246
       Top = 163
-      Width = 17
+      Width = 6
       Height = 17
       Alignment = taCenter
       Caption = '*'
@@ -871,7 +871,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Label18: TLabel
       Left = 641
       Top = 257
-      Width = 14
+      Width = 6
       Height = 17
       Alignment = taCenter
       Caption = '*'
@@ -885,7 +885,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Label19: TLabel
       Left = 641
       Top = 288
-      Width = 14
+      Width = 6
       Height = 17
       Alignment = taCenter
       Caption = '*'
@@ -939,7 +939,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Label22: TLabel
       Left = 194
       Top = 70
-      Width = 12
+      Width = 6
       Height = 17
       Alignment = taCenter
       Caption = '*'
@@ -953,7 +953,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Label23: TLabel
       Left = 660
       Top = 70
-      Width = 11
+      Width = 6
       Height = 17
       Alignment = taCenter
       Caption = '*'
@@ -967,7 +967,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Label25: TLabel
       Left = 546
       Top = 257
-      Width = 16
+      Width = 6
       Height = 17
       Alignment = taCenter
       Caption = '*'
@@ -981,7 +981,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Label27: TLabel
       Left = 546
       Top = 288
-      Width = 15
+      Width = 6
       Height = 17
       Alignment = taCenter
       Caption = '*'
@@ -995,7 +995,7 @@ object F_PessoaCadastrar: TF_PessoaCadastrar
     object Label28: TLabel
       Left = 120
       Top = 257
-      Width = 15
+      Width = 6
       Height = 17
       Alignment = taCenter
       Caption = '*'

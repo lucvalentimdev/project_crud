@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids, Datasnap.DBClient, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids, Datasnap.DBClient, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, FireDAC.Comp.DataSet;
 
 type
   TF_PessoaBuscar = class(TForm)
@@ -24,6 +24,21 @@ type
     Label1: TLabel;
     Ed_CNPJ: TEdit;
     Label2: TLabel;
+    CDS_Pessoasid_pessoa: TFDAutoIncField;
+    CDS_Pessoasnome: TWideStringField;
+    CDS_Pessoastelefone: TWideStringField;
+    CDS_Pessoasdata_nascimento: TWideMemoField;
+    CDS_Pessoastipo_cliente: TIntegerField;
+    CDS_Pessoascpf: TWideStringField;
+    CDS_Pessoascnpj: TWideStringField;
+    CDS_Pessoasrg: TWideStringField;
+    CDS_Pessoasemail: TWideStringField;
+    CDS_Pessoasendereco: TWideStringField;
+    CDS_Pessoascidade: TWideStringField;
+    CDS_Pessoasestado: TWideStringField;
+    CDS_PessoasCEP: TWideStringField;
+    CDS_Pessoasend_numero: TWideMemoField;
+    procedure Bt_ConsultarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,6 +50,16 @@ var
 
 implementation
 
+uses
+   U_GeralController;
+
 {$R *.dfm}
+
+procedure TF_PessoaBuscar.Bt_ConsultarClick(Sender: TObject);
+var
+   Controller : TGeralController;
+begin
+   controller.CarregarCDSPessoas(CDS_Pessoas);
+end;
 
 end.

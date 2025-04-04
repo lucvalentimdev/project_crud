@@ -2,7 +2,7 @@ unit U_GeralController;
 
 interface
    uses
-   U_Pessoa, U_Endereco;
+   U_Pessoa, U_Endereco,  Datasnap.DBClient;
 
 type
   TGeralController = class
@@ -11,14 +11,15 @@ type
 
 
   public
-    constructor Create();
 
 
     procedure SalvarPessoa(const TipoPessoa: Integer; const Nome: string; const DataNascimento: TDate;
                            const CPF: string; const RG: string; const Email: string; const Telefone: string;
                            const Endereco: TEndereco);
     procedure ConsultarCEP(const ACep: string; var AEndereco: TEndereco);
+    procedure CarregarCDSPessoas(CDS_Pessoas : TClientDataSet);
     function ValidarCEP(const ACep: string): Boolean;
+
 
   end;
 
@@ -26,11 +27,6 @@ implementation
 
 uses
   System.SysUtils;
-
-constructor TGeralController.Create();
-begin
-
-end;
 
 procedure TGeralController.SalvarPessoa(const TipoPessoa: Integer; const Nome: string; const DataNascimento: TDate;
           const CPF: string; const RG: string; const Email: string; const Telefone: string;const Endereco: TEndereco);
@@ -63,6 +59,48 @@ begin
   end;
 
 end;
+
+procedure TGeralController.CarregarCDSPessoas(CDS_Pessoas: TClientDataSet);
+var
+   ListaPessoas: TArray<TPessoa>;
+   Pessoa: TPessoa;
+begin
+   // Configurções do CDS //
+   CDS_Pessoas.CreateDataSet;
+   CDS_Pessoas.Open;
+   CDS_Pessoas.DisableControls;
+
+   try
+      Pessoa := TPessoa.Create;
+      ListaPessoas := Pessoa.BuscarPessoas;
+      CDS_Pessoas.EmptyDataSet;
+
+   // Carrega através da lista de objetos Pessoa para preencher o CDS //
+      for Pessoa in ListaPessoas do
+      begin
+         CDS_Pessoas.Append;
+         CDS_Pessoas.FieldByName('id_pessoa').AsInteger           := 0;
+         CDS_Pessoas.FieldByName('tipo_pessoa').AsInteger         := Pessoa.TipoPessoa;
+         CDS_Pessoas.FieldByName('nome').AsString                 := Pessoa.Nome;
+         CDS_Pessoas.FieldByName('data_nascimento').AsDateTime    := Pessoa.DataNascimento;
+         CDS_Pessoas.FieldByName('cpf').AsString                  := Pessoa.CPF;
+         CDS_Pessoas.FieldByName('rg').AsString                   := Pessoa.RG;
+         CDS_Pessoas.FieldByName('email').AsString                := Pessoa.Email;
+         CDS_Pessoas.FieldByName('telefone').AsString             := Pessoa.Telefone;
+
+         // Campos relacionados ao endereço //
+         CDS_Pessoas.FieldByName('cep').AsString                  := Pessoa.Endereco.Cep;
+         CDS_Pessoas.FieldByName('endereco').AsString             := Pessoa.Endereco.Logradouro;
+         CDS_Pessoas.FieldByName('cidade').AsString               := Pessoa.Endereco.Cidade;
+         CDS_Pessoas.FieldByName('estado').AsString               := Pessoa.Endereco.Estado;
+         CDS_Pessoas.FieldByName('end_numero').AsString           := Pessoa.Endereco.Numero;
+         CDS_Pessoas.Post;
+      end;
+   finally
+     CDS_Pessoas.EnableControls;
+   end;
+end;
+
 
 procedure TGeralController.ConsultarCEP(const ACep: string; var AEndereco: TEndereco);
 begin
